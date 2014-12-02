@@ -6,7 +6,9 @@
     <div id="wrapper">
 
         <?php include 'menu.php'; ?>
-        <div id="page-wrapper"><?php include 'loader.php'; ?></div>
+        <div id="page-wrapper">
+            <?php include 'loader.php'; ?>
+        </div>
         <!-- /#page-wrapper -->
 
     </div>

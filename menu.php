@@ -235,24 +235,55 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        
                         <li>
-                            <a class="active" href="index.php?route=dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php?route=dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
+                        
                         <li>
-                            <a href="index.php?route=user"><i class="fa fa-user fa-fw"></i> User</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Setting<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                                
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="index.php?route=user">User</a>
                                 </li>
+                                
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="index.php?route=pegawai">Data Pegawai</a>
                                 </li>
+                                
+                                <li>
+                                    <a href="index.php?route=jabatan">Jabatan</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="index.php?route=global">Global</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="index.php?route=perkawinan">Status Perkawinan</a>
+                                </li>
+                                
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+
+                        <li>
+                            <a href="index.php?route=inputabsen"><i class="fa fa-clock-o fa-fw"></i> Input Absen</a>
+                        </li>
+                        
+                        <li>
+                            <a href="index.php?route=previewgaji"><i class="fa fa-file-text fa-fw"></i> Preview Gaji</a>
+                        </li>
+                        
+                        <li>
+                            <a href="index.php?route=tabelgaji"><i class="fa fa-table fa-fw"></i> Tabel Gaji</a>
+                        </li>
+                        
+                        <li>
+                            <a href="index.php?route=laporan"><i class="fa fa-th fa-fw"></i> Laporan</a>
+                        </li>
+                        
                         <li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
