@@ -13,6 +13,7 @@
                         <!--bikin baris pakai tr-->
                         <tr>
                             <!--bikin header pakai th-->
+                            <th>No</th>
                             <th>Nama</th>
                             <th>Username</th>
                             <th>Level</th>
@@ -31,12 +32,14 @@
                         else 
                         {
 //                        jika query berhasil
+                            $no_urut = 1;
                             while ($row = mysql_fetch_assoc($result)) 
                             {
                         ?>
                             <!--bikin baris pakai tr-->
                             <tr>
                                 <!--bikin kolom pakai td-->
+                                <td><?php echo $no_urut++; ?></td>
                                 <td><?php echo $row['nama_user']; ?></td>
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['level']; ?></td>
@@ -53,4 +56,3 @@
                     </table>
                 </div>
             </div>
-            

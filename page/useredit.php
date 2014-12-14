@@ -1,4 +1,10 @@
 <?php 
+//untuk validasi 
+//kita bikin error variabel
+$error_nama_user = '';
+$error_username = '';
+
+
 //jika tombol submit ditekan
 if (isset($_POST['submit'])) 
 {
@@ -9,23 +15,33 @@ if (isset($_POST['submit']))
     $id_user = mysql_real_escape_string(trim($_POST['id_user']));
         
 //    validasi form
+    if ($nama_user=='') {
+        $error_nama_user = 'nama user tidak boleh kosong';
+    }
     
-//    input ke database
-    $query = "UPDATE user SET nama_user='$nama_user', username='$username', level='$level' WHERE id_user='$id_user'";
-    $result = mysql_query($query);
+    if ($username=='') {
+        $error_username = 'username tidak boleh kosong';
+    }
     
-    if (!$result) 
-    {
-//  jika query gagal
-        die(mysql_error());
-    } 
-    else 
-    {
-//        jika berhasil
-//    tampilkan pesan
-        echo '<script>alert("Perubahan data berhasil.")</script>';
-//    redirect ke user
-        echo '<script>window.location="index.php?route=user"</script>';
+    if ($error_nama_user == '' && $error_username == '') {
+    
+    //    input ke database
+        $query = "UPDATE user SET nama_user='$nama_user', username='$username', level='$level' WHERE id_user='$id_user'";
+        $result = mysql_query($query);
+
+        if (!$result) 
+        {
+    //  jika query gagal
+            die(mysql_error());
+        } 
+        else 
+        {
+    //        jika berhasil
+    //    tampilkan pesan
+            echo '<script>alert("Perubahan data berhasil.")</script>';
+    //    redirect ke user
+            echo '<script>window.location="index.php?route=user"</script>';
+        }
     }
 }
 
@@ -57,17 +73,17 @@ $row = mysql_fetch_assoc($result);
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=useredit" method="POST">
                         <div class="form-group">
-                            <label>Nama User</label>
-                            <input class="form-control" type="text" name="nama_user" placeholder="nama user" value="<?php echo $row['nama_user']; ?>">
+                            <label>Nama User</label> <span class="inputerror"><?php echo $error_nama_user ?></span>
+                            <input class="form-control" type="text" name="nama_user" placeholder="nama user" value="<?php echo $nama_user?$nama_user:$row['nama_user']; ?>">
                         </div>
                         <div class="form-group">
-                            <label>Username</label>
-                            <input class="form-control" type="text" name="username" placeholder="username" value="<?php echo $row['username']; ?>">
+                            <label>Username</label> <span class="inputerror"><?php echo $error_username ?></span>
+                            <input class="form-control" type="text" name="username" placeholder="username" value="<?php echo $username?$username:$row['username']; ?>">
                         </div>
                         <div class="form-group">
                             <label>Level</label>
                             <?php 
-                            $selected_level = $row['level'];
+                            $selected_level = $level?$level:$row['level'];
                             ?>
                             <select class="form-control" name="level">
                                 <option value="admin" <?php echo $selected_level=='admin'?'selected="selected"':''; ?>>admin</option>
@@ -75,7 +91,7 @@ $row = mysql_fetch_assoc($result);
                             </select>
                         </div>
                         <!--jangan lupa kirim id-->
-                        <input type="hidden" name="id_user" value="<?php echo $row['id_user']; ?>">
+                        <input type="hidden" name="id_user" value="<?php echo $id_user?$id_user:$row['id_user']; ?>">
                         <input class="btn btn-primary" type="submit" name="submit" value="Edit">
                         <a class="btn btn-default" href="index.php?route=user">Cancel</a>
                     </form>
