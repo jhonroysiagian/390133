@@ -1,0 +1,28 @@
+PR 14-12-2014
+
+1. Buat tabel 'pegawai' di PHPMYADMIN
+
+	id_pegawai 	int(11)		Auto Increment
+	nama_pegawai	varchar(255)
+	nik_pegawai	varchar(8)
+	jabatan_pegawai	int(11) -> relasi ke tabel jabatan
+	alamat		varchar(255)
+	tlp_pegawai	varchar(15)
+	jekel_pegawai	varchar(10)
+	dob_pegawai	date
+
+2. Bikin pegawai.php
+	bikin tabel
+	tampilkan data dari database ke dalam tabel
+
+3. Bikin pegawaiadd.php
+	bikin form sesuai field tabel kecuali id_pegawai
+	bikin aksi form
+
+4. Bikin pegawaiedit.php
+	bikin form sesuai field tabel kecuali id_pegawai
+	jangan lupa tambahkan id_pegawai hidden field
+	bikin aksi form
+
+5. Bikin pegawaidelete.php
+	bikin aksi delete 	

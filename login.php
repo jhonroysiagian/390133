@@ -1,4 +1,7 @@
 <?php
+//memulai session, harus di baris pertama aplikasi
+session_start();
+
 $error = "";
 //jika tombol submit ditekan
 if (isset($_POST['submit'])) {
@@ -7,10 +10,7 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = md5($_POST['password']);
     
-//    koneksi ke database dan pilih database
-    $koneksi = mysql_connect('localhost', 'root', '');
-    $db = mysql_select_db('obesphere');
-    
+    include 'inc/koneksi.php';
 //    cek ke database
     $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
     $hasil = mysql_query($query);
@@ -18,8 +18,18 @@ if (isset($_POST['submit'])) {
 //    menghitung jumlah baris hasil query
     $jumlah = mysql_num_rows($hasil);
     
+//    ambil data user
+    $data = mysql_fetch_assoc($hasil);
+//    var_dump($data);
+//    echo $data["username"];
+    
     if ($jumlah===1) {
 //        mendaftarkan session
+        $_SESSION['status_login'] = TRUE;
+        $_SESSION['nama_user'] = $data["nama_user"];
+        $_SESSION['username'] = $data["username"];
+        $_SESSION['level'] = $data["level"];
+        $_SESSION['id_user'] = $data["id_user"];
 //        
 //        redirect ke halaman index
         echo '<script>window.location="index.php"</script>';
@@ -59,6 +69,12 @@ if (isset($_POST['submit'])) {
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <style>
+        .login-error{
+            margin-top: 10px;
+        }
+    </style>
 
 </head>
 
@@ -81,10 +97,12 @@ if (isset($_POST['submit'])) {
                                     <input class="form-control" placeholder="Password" name="password" type="password">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" name="submit" class="btn btn-success btn-block" value="Sign In" />
+                                <input type="submit" name="submit" class="btn btn-primary btn-block" value="Sign In" />
                             </fieldset>
                         </form>
-                        <?php echo $error; ?>
+                        <div class="text-center text-danger login-error">
+                            <?php echo $error; ?>
+                        </div>
                     </div>
                 </div>
             </div>
