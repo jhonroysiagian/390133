@@ -22,6 +22,13 @@ if (isset($_POST['submit']))
     
     if ($username=='') {
         $error_username = 'username tidak boleh kosong';
+    }else{
+        $cekusername = mysql_query("SELECT * FROM user WHERE username = '$username'");
+        $jumlah = mysql_num_rows($cekusername);
+        if ($jumlah>0) {
+            $error_username = 'Username telah terpakai, gunakan username lain';
+        }
+         
     }
     
     if ($error_nama_user == '' && $error_username == '') {
@@ -48,7 +55,7 @@ if (isset($_POST['submit']))
 ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">User Add</h1>
+                    <h1 class="page-header">Tambah Pengguna</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -57,7 +64,7 @@ if (isset($_POST['submit']))
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=useradd" method="POST">
                         <div class="form-group">
-                            <label>Nama User</label> <span class="inputerror"><?php echo $error_nama_user ?></span>
+                            <label>Nama Pengguna</label> <span class="inputerror"><?php echo $error_nama_user ?></span>
                             <input class="form-control" type="text" name="nama_user" placeholder="nama user" value="<?php echo $nama_user; ?>">
                         </div>
                         <div class="form-group">
@@ -79,7 +86,7 @@ if (isset($_POST['submit']))
                             </select>
                         </div>
                         <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
-                        <a class="btn btn-default" href="index.php?route=user">Cancel</a>
+                        <a class="btn btn-default" href="index.php?route=user">Batal</a>
                     </form>
                     </form>
                 </div>

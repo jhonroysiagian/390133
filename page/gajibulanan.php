@@ -1,26 +1,12 @@
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Hitungan Gaji</h1>
+                    <h1 class="page-header">Rekap Gaji Bulanan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form role="form" action="index.php?route=gajihitung" method="POST">
-                        <div class="form-group">
-                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
-                            <select class="form-control" name="pegawai">
-                                <?php 
-                                $pegawai_selected = $_POST['pegawai'];
-                                $pegawai = mysql_query("SELECT * FROM pegawai ORDER BY id_pegawai");
-                                while ($datapegawai = mysql_fetch_array($pegawai)) {
-                                ?>
-                                <option <?php echo $datapegawai['id_pegawai']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['id_pegawai'] ?>"><?php echo $datapegawai['nama_pegawai'] ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                        </div>
+                    <form role="form" action="index.php?route=rekapgajibulanan" method="POST">
                         
                         <div class="form-group">
                             <label>Tahun</label>
@@ -49,7 +35,7 @@
                             </select>
                         </div>
                         
-                        <input class="btn btn-primary" type="submit" name="submit" value="Berikutnya">
+                        <input class="btn btn-primary" type="submit" name="submit" value="Tampilkan">
                         <!--<a class="btn btn-default" href="index.php?route=absen">Batal</a>-->
                     </form>
                 </div>

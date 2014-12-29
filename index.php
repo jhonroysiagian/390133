@@ -6,6 +6,8 @@ error_reporting(0);
 
 //include koneksi ke database
 include 'inc/koneksi.php';
+include 'inc/fungsi.php';
+include 'inc/pagination1.php';
 
 //jika belum login, redirect ke login.php
 if ($_SESSION['status_login']<>1) {

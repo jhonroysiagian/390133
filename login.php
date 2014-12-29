@@ -28,6 +28,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['status_login'] = TRUE;
         $_SESSION['nama_user'] = $data["nama_user"];
         $_SESSION['username'] = $data["username"];
+        $_SESSION['password'] = $data["password"];
         $_SESSION['level'] = $data["level"];
         $_SESSION['id_user'] = $data["id_user"];
 //        

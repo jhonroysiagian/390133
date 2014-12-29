@@ -1,11 +1,11 @@
 <?php 
 //  buat query dan jalankan query
-$query = "SELECT * FROM user ORDER BY nama_user";
+$query = "SELECT * FROM jabatan ORDER BY id_jabatan";
 $result = mysql_query($query);
     
 
 //pagination config start
-$reload = "index.php?route=user"; // ke halaman dia sendiri
+$reload = "index.php?route=jabatan"; // ke halaman dia sendiri
 $rpp = 10; // jumlah record per halaman
 //$adjacents = 4;
 $page = intval($_GET["page"]);
@@ -20,23 +20,24 @@ $no_urut = ($page-1)*$rpp;
 ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Pengguna</h1>
+                    <h1 class="page-header">Data Jabatan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <a href="index.php?route=useradd" class="btn btn-primary">Tambah</a> <br><br>
+                    <a href="index.php?route=jabatanadd" class="btn btn-primary">Tambah</a> <br><br>
                     <!--bikin tabel-->
                     <table class="table table-bordered table-striped">
                         <!--bikin baris pakai tr-->
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No</th>
-                            <th>Nama Pengguna</th>
-                            <th>Username</th>
-                            <th>Level</th>
+                            <th>Jabatan</th>
+                            <th>Gaji Pokok</th>
+                            <th>Gaji Kehadiran</th>
+                            <th>Tunjangan</th>
                             <th>Aksi</th>
                         </tr>
                         <?php 
@@ -48,6 +49,7 @@ $no_urut = ($page-1)*$rpp;
                         } 
                         else 
                         {
+                            
 //                        jika query berhasil
                             while(($count<$rpp) && ($i<$tcount)) {
                                 mysql_data_seek($result,$i);
@@ -57,13 +59,14 @@ $no_urut = ($page-1)*$rpp;
                             <tr>
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo ++$no_urut; ?></td>
-                                <td><?php echo $row['nama_user']; ?></td>
-                                <td><?php echo $row['username']; ?></td>
-                                <td><?php echo $row['level']; ?></td>
+                                <td><?php echo $row['jabatan']; ?></td>
+                                <td><?php echo rp($row['gaji_pokok']);?></td>
+                                <td><?php echo rp($row['gaji_kehadiran']); ?></td>
+                                <td><?php echo rp($row['tunjangan']); ?></td>
                                 <td>
                                     <!--menambahkan link untuk edit delete-->
-                                    <a href="index.php?route=useredit&id=<?php echo $row['id_user']; ?>">Ubah</a> | 
-                                    <a href="index.php?route=userdelete&id=<?php echo $row['id_user']; ?>" onclick="javascript: return confirm('Anda yakin ?')">Hapus</a>
+                                    <a href="index.php?route=jabatanedit&id=<?php echo $row['id_jabatan']; ?>">Ubah</a> | 
+                                    <a href="index.php?route=jabatandelete&id=<?php echo $row['id_jabatan']; ?>" onclick="javascript: return confirm('Anda yakin ?')">Hapus</a>
                                 </td>
                             </tr>
                         <?php

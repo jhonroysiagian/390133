@@ -21,9 +21,9 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="index.php?route=profile"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="index.php?route=profile_setting"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -51,7 +51,7 @@
                         </li>
                         
                         <li>
-                            <a href="index.php?route=dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php?route=dashboard"><i class="fa fa-dashboard fa-fw"></i> Beranda</a>
                         </li>
                         
                         <?php 
@@ -63,11 +63,11 @@
                         if (in_array($_SESSION['level'],$boleh_lihat_setting)) {
                         ?>
                         <li>
-                            <a href="#"><i class="fa fa-gear fa-fw"></i> Setting<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Pengaturan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 
                                 <li>
-                                    <a href="index.php?route=user">User</a>
+                                    <a href="index.php?route=user">Pengguna</a>
                                 </li>
                                 
                                 <li>
@@ -75,15 +75,11 @@
                                 </li>
                                 
                                 <li>
-                                    <a href="index.php?route=jabatan">Jabatan</a>
+                                    <a href="index.php?route=jabatan">Data Jabatan</a>
                                 </li>
                                 
                                 <li>
-                                    <a href="index.php?route=global">Global</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="index.php?route=perkawinan">Status Perkawinan</a>
+                                    <a href="index.php?route=ptkp">PTKP</a>
                                 </li>
                                 
                             </ul>
@@ -98,7 +94,7 @@
                         if (in_array($_SESSION['level'],$boleh_input_absen)) {
                         ?>
                         <li>
-                            <a href="index.php?route=inputabsen"><i class="fa fa-clock-o fa-fw"></i> Input Absen</a>
+                            <a href="index.php?route=absen"><i class="fa fa-clock-o fa-fw"></i> Data Absen</a>
                         </li>
                         <?php
                         }
@@ -109,7 +105,7 @@
                         if (in_array($_SESSION['level'],$boleh_preview_gaji)) {
                         ?>
                         <li>
-                            <a href="index.php?route=previewgaji"><i class="fa fa-file-text fa-fw"></i> Preview Gaji</a>
+                            <a href="index.php?route=previewgaji"><i class="fa fa-file-text fa-fw"></i> Hitungan Gaji</a>
                         </li>
                         <?php
                         }
@@ -127,11 +123,30 @@
                         ?>
                         
                         <?php 
-                        $boleh_laporan = array('manager');
+                        $boleh_laporan = array('admin','manager');
                         if (in_array($_SESSION['level'],$boleh_laporan)) {
                         ?>
                         <li>
-                            <a href="index.php?route=laporan"><i class="fa fa-th fa-fw"></i> Laporan</a>
+                            <a href="index.php?route=laporan"><i class="fa fa-th fa-fw"></i> Laporan <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                
+                                <li>
+                                    <a href="index.php?route=struk">Struk Gaji</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="index.php?route=tandaterima">Tanda Terima</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="index.php?route=gajibulanan">Rekap Gaji Bulanan</a>
+                                </li>
+                                
+                                <li>
+                                    <a href="index.php?route=buktipotongpajak">Bukti Potong Pajak</a>
+                                </li>
+                                
+                            </ul>
                         </li>
                         <?php
                         }

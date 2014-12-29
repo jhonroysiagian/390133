@@ -21,6 +21,13 @@ if (isset($_POST['submit']))
     
     if ($username=='') {
         $error_username = 'username tidak boleh kosong';
+    }else{
+        $cekusername = mysql_query("SELECT * FROM user WHERE username = '$username' AND id_user <> '$id_user'");
+        $jumlah = mysql_num_rows($cekusername);
+        if ($jumlah>0) {
+            $error_username = 'Username telah terpakai, gunakan username lain';
+        }
+         
     }
     
     if ($error_nama_user == '' && $error_username == '') {
@@ -64,7 +71,7 @@ $row = mysql_fetch_assoc($result);
 ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">User Edit</h1>
+                    <h1 class="page-header">Ubah Pengguna</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -73,7 +80,7 @@ $row = mysql_fetch_assoc($result);
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=useredit" method="POST">
                         <div class="form-group">
-                            <label>Nama User</label> <span class="inputerror"><?php echo $error_nama_user ?></span>
+                            <label>Nama Pengguna</label> <span class="inputerror"><?php echo $error_nama_user ?></span>
                             <input class="form-control" type="text" name="nama_user" placeholder="nama user" value="<?php echo $nama_user?$nama_user:$row['nama_user']; ?>">
                         </div>
                         <div class="form-group">
@@ -92,8 +99,8 @@ $row = mysql_fetch_assoc($result);
                         </div>
                         <!--jangan lupa kirim id-->
                         <input type="hidden" name="id_user" value="<?php echo $id_user?$id_user:$row['id_user']; ?>">
-                        <input class="btn btn-primary" type="submit" name="submit" value="Edit">
-                        <a class="btn btn-default" href="index.php?route=user">Cancel</a>
+                        <input class="btn btn-primary" type="submit" name="submit" value="Ubah">
+                        <a class="btn btn-default" href="index.php?route=user">Batal</a>
                     </form>
                     </form>
                 </div>
