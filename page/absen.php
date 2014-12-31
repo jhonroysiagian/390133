@@ -7,7 +7,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       *
     FROM
       absen
-      LEFT JOIN pegawai ON pegawai.id_pegawai = absen.id_pegawai_fk_absen
+      LEFT JOIN pegawai ON pegawai.nip = absen.nip_fk_absen
     WHERE
       nama_pegawai LIKE '%$keyword%' OR 
       ket_absen LIKE '%$keyword%' 
@@ -19,7 +19,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       *
     FROM
       absen
-      LEFT JOIN pegawai ON pegawai.id_pegawai = absen.id_pegawai_fk_absen
+      LEFT JOIN pegawai ON pegawai.nip = absen.nip_fk_absen
     ORDER BY id_absen DESC";
     $result = mysql_query($query);
 }

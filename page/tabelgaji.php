@@ -7,7 +7,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       *
     FROM
       gaji
-      LEFT JOIN pegawai ON pegawai.id_pegawai = gaji.id_pegawai_gaji
+      LEFT JOIN pegawai ON pegawai.nip = gaji.nip_gaji
     WHERE
       nama_pegawai LIKE '%$keyword%' OR
       bulan_gaji LIKE '%$keyword%'
@@ -19,7 +19,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       *
     FROM
       gaji
-      LEFT JOIN pegawai ON pegawai.id_pegawai = gaji.id_pegawai_gaji
+      LEFT JOIN pegawai ON pegawai.nip = gaji.nip_gaji
     ORDER BY id_gaji DESC";
     $result = mysql_query($query);
 }
@@ -47,6 +47,13 @@ $no_urut = ($page-1)*$rpp;
             </div>
             <div class="row">
                 <div class="col-lg-8">
+                    <?php
+                    if($_REQUEST['keyword']<>""){
+                    ?>
+                        <a class="btn btn-default btn-outline" href="index.php?route=tabelgaji"> Reset Pencarian</a>
+                    <?php
+                    }
+                    ?>
                 </div>
                 <div class="col-lg-4 text-right">
                     <form method="post" action="index.php?route=tabelgaji">
@@ -72,6 +79,7 @@ $no_urut = ($page-1)*$rpp;
                             <th>No.</th>
                             <th>Nama Pegawai</th>
                             <th>Periode Gaji</th>
+                            <th>Jabatan</th>
                             <th>Gaji Pokok</th>
                             <th>Gaji Kehadiran</th>
                             <th>Tunjangan</th>
@@ -102,6 +110,7 @@ $no_urut = ($page-1)*$rpp;
                                 <td><?php echo ++$no_urut; ?></td>
                                 <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo $row['bulan_gaji']." ".$row['tahun_gaji']; ?></td>
+                                <td><?php echo $row['jabatan_gaji']; ?></td>
                                 <td style="text-align: right"><?php echo ribuan($row['gapok_gaji']); ?></td>
                                 <td style="text-align: right"><?php echo ribuan($row['gakeh_gaji']); ?></td>
                                 <td style="text-align: right"><?php echo ribuan($row['tunja_gaji']); ?></td>

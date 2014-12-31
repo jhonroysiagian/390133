@@ -1,7 +1,8 @@
             <?php 
             if (isset($_POST['simpangaji'])) {
                 
-                $id_pegawai_gaji = $_POST['id_pegawai_gaji'];
+                $nip_gaji = $_POST['nip_gaji'];
+                $jabatan_gaji = $_POST['jabatan'];
                 $bulan_gaji = $_POST['bulan_gaji'];
                 $tahun_gaji = $_POST['tahun_gaji'];
                 $gapok_gaji = $_POST['gapok_gaji'];
@@ -15,10 +16,16 @@
                 $pph_tahun_gaji = $_POST['pph_tahun_gaji'];
                 $pph_bulan_gaji = $_POST['pph_bulan_gaji'];
                 $bersih_gaji = $_POST['bersih_gaji'];
+                $masuk = $_POST['masuk'];
+                $cuti = $_POST['cuti'];
+                $off = $_POST['off'];
+                $sakit = $_POST['sakit'];
+                $alpa = $_POST['alpa'];
 
-                $del = mysql_query("DELETE FROM gaji WHERE id_pegawai_gaji = '$id_pegawai_gaji' AND bulan_gaji = '$bulan_gaji' AND tahun_gaji = '$tahun_gaji'");
+                $del = mysql_query("DELETE FROM gaji WHERE nip_gaji = '$nip_gaji' AND bulan_gaji = '$bulan_gaji' AND tahun_gaji = '$tahun_gaji'");
                 
-                $query = mysql_query("INSERT INTO gaji (id_pegawai_gaji, "
+                $query = mysql_query("INSERT INTO gaji (nip_gaji, "
+                        . "jabatan_gaji, "
                         . "bulan_gaji, "
                         . "tahun_gaji, "
                         . "gapok_gaji, "
@@ -31,9 +38,15 @@
                         . "persen_gaji, "
                         . "pph_tahun_gaji, "
                         . "pph_bulan_gaji, "
+                        . "masuk, "
+                        . "off, "
+                        . "cuti, "
+                        . "sakit, "
+                        . "alpa, "
                         . "bersih_gaji) "
                         . "VALUES "
-                        . "('$id_pegawai_gaji',"
+                        . "('$nip_gaji',"
+                        . "'$jabatan_gaji',"
                         . "'$bulan_gaji',"
                         . "'$tahun_gaji',"
                         . "'$gapok_gaji',"
@@ -46,8 +59,13 @@
                         . "'$persen_gaji',"
                         . "'$pph_tahun_gaji',"
                         . "'$pph_bulan_gaji',"
+                        . "'$masuk',"
+                        . "'$off',"
+                        . "'$cuti',"
+                        . "'$sakit',"
+                        . "'$alpa',"
                         . "'$bersih_gaji')");
-                echo '<script>alert("Penambahan data berhasil.")</script>';
+                echo '<script>alert("Simpan data gaji berhasil.")</script>';
                 echo '<script>window.location="index.php?route=previewgaji"</script>';
             } else {
                 if ($_POST['pegawai']=="") {
@@ -57,7 +75,7 @@
             }
             
 //            ambil data pegawai
-            $id_pegawai = $_POST['pegawai'];
+            $nip = $_POST['pegawai'];
             $bulan = $_POST['bulan'];
             $tahun = $_POST['tahun'];
             
@@ -66,9 +84,14 @@
                                   FROM
                                     pegawai
                                     LEFT JOIN jabatan ON pegawai.jabatan_pegawai = jabatan.id_jabatan
-                                    LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.id_ptkp 
+                                    LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.kode_ptkp 
                                   WHERE 
-                                    id_pegawai = '$id_pegawai'");
+                                    nip = '$nip'");
+            
+            if (!$qgaji) {
+                die(mysql_error());
+            }
+            
             $data = mysql_fetch_assoc($qgaji);
             
             
@@ -78,7 +101,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    id_pegawai_fk_absen = '$id_pegawai' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'masuk'");
+                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'masuk'");
             $jumlahmasuk = mysql_num_rows($qmasuk);
 //            hitung jumlah cuti kerja
             $qcuti = mysql_query("SELECT
@@ -86,7 +109,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    id_pegawai_fk_absen = '$id_pegawai' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'cuti'");
+                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'cuti'");
             $jumlahcuti = mysql_num_rows($qcuti);
 //            hitung jumlah sakit kerja
             $qsakit = mysql_query("SELECT
@@ -94,7 +117,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    id_pegawai_fk_absen = '$id_pegawai' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'sakit'");
+                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'sakit'");
             $jumlahsakit = mysql_num_rows($qsakit);
 //            hitung jumlah alpa kerja
             $qalpa = mysql_query("SELECT
@@ -102,7 +125,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    id_pegawai_fk_absen = '$id_pegawai' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'alpa'");
+                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'alpa'");
             $jumlahalpa = mysql_num_rows($qalpa);
 //            hitung jumlah off kerja
             $qoff = mysql_query("SELECT
@@ -110,7 +133,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    id_pegawai_fk_absen = '$id_pegawai' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'off'");
+                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'off'");
             $jumlahoff = mysql_num_rows($qoff);
             ?>
             <div class="row">
@@ -125,6 +148,10 @@
                         <tr>
                             <th width="220px">Nama Pegawai</th>
                             <th><?php echo $data['nama_pegawai'] ?></th>
+                        </tr>
+                        <tr>
+                            <th width="220px">Jabatan</th>
+                            <th><?php echo $data['jabatan'] ?></th>
                         </tr>
                         <tr>
                             <th>Periode</th>
@@ -226,7 +253,8 @@
                         </tr>
                     </table>
                     <form action="index.php?route=gajihitung" method="post">
-                        <input type="hidden" name="id_pegawai_gaji" value="<?php echo $id_pegawai ?>" />
+                        <input type="hidden" name="nip_gaji" value="<?php echo $nip ?>" />
+                        <input type="hidden" name="jabatan" value="<?php echo $data['jabatan'] ?>" />
                         <input type="hidden" name="bulan_gaji" value="<?php echo getBulan($bulan)  ?>" />
                         <input type="hidden" name="tahun_gaji" value="<?php echo $tahun ?>" />
                         <input type="hidden" name="gapok_gaji" value="<?php echo $data['gaji_pokok'] ?>" />
@@ -240,6 +268,11 @@
                         <input type="hidden" name="pph_tahun_gaji" value="<?php echo $pph_tahun ?>" />
                         <input type="hidden" name="pph_bulan_gaji" value="<?php echo $pph_bulan ?>" />
                         <input type="hidden" name="bersih_gaji" value="<?php echo $gaji_bersih ?>" />
+                        <input type="hidden" name="masuk" value="<?php echo $jumlahmasuk ?>" />
+                        <input type="hidden" name="off" value="<?php echo $jumlahoff ?>" />
+                        <input type="hidden" name="cuti" value="<?php echo $jumlahcuti ?>" />
+                        <input type="hidden" name="sakit" value="<?php echo $jumlahsakit ?>" />
+                        <input type="hidden" name="alpa" value="<?php echo $jumlahalpa ?>" />
                         <input class="btn btn-primary" type="submit" name="simpangaji" value="Setuju dan Simpan">
                         <a class="btn btn-default" href="index.php?route=previewgaji">Batal</a>
                     </form>

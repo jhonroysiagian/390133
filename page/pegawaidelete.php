@@ -1,15 +1,15 @@
 <?php 
 if (isset($_GET['id']))
 {
-    $id_pegawai = $_GET['id'];
+    $nip = $_GET['id'];
 }
 else
 {
-    $id_pegawai = NULL;
+    $nip = NULL;
 }
 
     //    hapus dari database
-$query = "DELETE FROM pegawai WHERE id_pegawai = '$id_pegawai'";
+$query = "DELETE FROM pegawai WHERE nip = '$nip'";
 $result = mysql_query($query);
 
 if (!$result)

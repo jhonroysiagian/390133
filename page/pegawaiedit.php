@@ -25,46 +25,60 @@ if (isset($_POST['submit']))
     $tlp_pegawai = mysql_real_escape_string(trim($_POST['tlp_pegawai']));
     $npwp_pegawai = mysql_real_escape_string(trim($_POST['npwp_pegawai']));
     $agama = mysql_real_escape_string(trim($_POST['agama']));
-    $id_pegawai = mysql_real_escape_string(trim($_POST['id_pegawai']));
+    $nip = mysql_real_escape_string(trim($_POST['nip']));
     $status_kawin = mysql_real_escape_string(trim($_POST['status_kawin']));
         
     $tgl_lahir_input = sql($tgl_lahir);
 
 //    validasi form
     if ($nama_pegawai=='') {
-        $error_nama_pegawai= 'nama pegawai tidak boleh kosong';
+        $error_nama_pegawai = 'nama pegawai tidak boleh kosong';
     }
+    
     if ($nip=='') {
         $error_nip = 'nip tidak boleh kosong';
     }else{
-        $ceknip = mysql_query("SELECT * FROM pegawai WHERE nip = '$nip' AND id_pegawai<>'$id_pegawai'");
-        $jumlah = mysql_num_rows($ceknip);
-        if ($jumlah>0) {
-            $error_nip = 'nip telah ada di database';
+        if ( !is_numeric($nip)) {
+            $error_nip = 'nip harus berupa angka';
+        } else {
+            if (strlen($nip) <> 8) {
+                $error_nip = 'nip harus 8 digit';
+            } 
         }
     }
-    if ($jabatan_pegawai =='') {
-        $error_jabatan_pegawai = 'jabatan tidak boleh kosong';
-    }
+    
     if ($alamat=='') {
         $error_alamat = 'alamat tidak boleh kosong';
     }
-    if ($tgl_lahir=='') {
-        $error_tangal_lahir = 'tanggal lahir tidak boleh kosong';
+    
+    if ($jabatan_pegawai=='') {
+        $error_jabatan_pegawai = 'jabatan tidak boleh kosong';
     }
+    
+    if ($tgl_lahir=='') {
+        $error_tgl_lahir = 'tanggal lahir tidak boleh kosong';
+    }
+    
     if ($jenis_kelamin=='') {
         $error_jenis_kelamin = 'jenis kelamin tidak boleh kosong';
     }
+    
     if ($tlp_pegawai=='') {
-        $error_tlp_pegawai = 'nama user tidak boleh kosong';
+        $error_tlp_pegawai = 'nomer telepon tidak boleh kosong';
     }else{
         if ( !is_numeric($tlp_pegawai)) {
             $error_tlp_pegawai = 'nomer telepon harus berupa angka';
+        } else {
+            if (strlen($tlp_pegawai) > 12) {
+                $error_tlp_pegawai = 'nomor telepon maksimal 12 digit';
+            }
         }
     }
+    
     if ($npwp_pegawai=='') {
         $error_npwp_pegawai = 'npwp tidak boleh kosong';
     }
+
     if ($agama=='') {
         $error_agama = 'agama tidak boleh kosong';
     }
@@ -89,7 +103,7 @@ if (isset($_POST['submit']))
                 . "npwp_pegawai='$npwp_pegawai', "
                 . "agama='$agama', "
                 . "status_kawin='$status_kawin' "
-                . "WHERE id_pegawai='$id_pegawai'";
+                . "WHERE nip='$nip'";
         $result = mysql_query($query);
 
         if (!$result) 
@@ -109,17 +123,11 @@ if (isset($_POST['submit']))
     }
 }
 
-if (isset($_GET['id']))
-{
-    $id_pegawai = $_GET['id'];
-}
-else
-{
-    $id_pegawai = NULL;
-}
+
+$nip = $_GET['id']?$_GET['id']:$_POST['nip'];
 
 //    ambil dari database
-$query = "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai'";
+$query = "SELECT * FROM pegawai WHERE nip = '$nip'";
 $result = mysql_query($query);
 
 
@@ -137,12 +145,12 @@ $row = mysql_fetch_assoc($result);
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=pegawaiedit" method="POST">
                         <div class="form-group">
-                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
-                            <input class="form-control" type="text" name="nama_pegawai" placeholder="nama pegawai" value="<?php echo $nama_pegawai?$nama_pegawai:$row['nama_pegawai']; ?>">
+                            <label>NIP</label> <span class="inputerror"><?php echo $error_nip ?></span>
+                            <input readonly="readonly" class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip?$nip:$row['nip']; ?>">
                         </div>
                         <div class="form-group">
-                            <label>NIP</label> <span class="inputerror"><?php echo $error_nip ?></span>
-                            <input class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip?$nip:$row['nip']; ?>">
+                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
+                            <input class="form-control" type="text" name="nama_pegawai" placeholder="nama pegawai" value="<?php echo $nama_pegawai?$nama_pegawai:$row['nama_pegawai']; ?>">
                         </div>
                         <div class="form-group">
                             <label>Jabatan</label> <span class="inputerror"><?php echo $error_jabatan_pegawai ?></span>
@@ -209,10 +217,10 @@ $row = mysql_fetch_assoc($result);
                             <select class="form-control" name="status_kawin">
                                 <?php 
                                 $ptkp_selected = $_POST['status_kawin']?$_POST['status_kawin']:$row['status_kawin'];
-                                $ptkp = mysql_query("SELECT * FROM ptkp ORDER BY id_ptkp");
+                                $ptkp = mysql_query("SELECT * FROM ptkp ORDER BY kode_ptkp");
                                 while ($dataptkp = mysql_fetch_array($ptkp)) {
                                 ?>
-                                <option <?php echo $dataptkp['id_ptkp']==$ptkp_selected?'selected="selected"':''; ?> value="<?php echo $dataptkp['id_ptkp'] ?>"><?php echo $dataptkp['nama_ptkp'] ?></option>
+                                <option <?php echo $dataptkp['kode_ptkp']==$ptkp_selected?'selected="selected"':''; ?> value="<?php echo $dataptkp['kode_ptkp'] ?>"><?php echo $dataptkp['nama_ptkp'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -220,7 +228,7 @@ $row = mysql_fetch_assoc($result);
                         </div>
 
                         <!--jangan lupa kirim id-->
-                        <input type="hidden" name="id_pegawai" value="<?php echo $id_pegawai?$id_pegawai:$row['id_pegawai']; ?>">
+                        <input type="hidden" name="nip" value="<?php echo $nip?$nip:$row['nip']; ?>">
                         <input class="btn btn-primary" type="submit" name="submit" value="Edit">
                         <a class="btn btn-default" href="index.php?route=pegawai">Cancel</a>
                     </form>

@@ -1,16 +1,16 @@
 <?php 
 if (isset($_GET['id']))
 {
-    $id_ptkp = $_GET['id'];
+    $kode_ptkp = $_GET['id'];
 }
 else
 {
-    $id_ptkp = NULL;
+    $kode_ptkp = NULL;
 }
 
 //khusus ptkp delete
     //    hapus dari database
-    $query = "DELETE FROM ptkp WHERE id_ptkp = '$id_ptkp'";
+    $query = "DELETE FROM ptkp WHERE kode_ptkp = '$kode_ptkp'";
     $result = mysql_query($query);
 
     if (!$result)

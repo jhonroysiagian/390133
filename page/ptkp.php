@@ -1,6 +1,6 @@
 <?php 
 //  buat query dan jalankan query
-$query = "SELECT * FROM ptkp ORDER BY id_ptkp DESC";
+$query = "SELECT * FROM ptkp ORDER BY kode_ptkp DESC";
 $result = mysql_query($query);
     
 
@@ -63,8 +63,8 @@ $no_urut = ($page-1)*$rpp;
                                 <td><?php echo rp($row['nilai_ptkp']);?></td>
                                 <td>
                                     <!--menambahkan link untuk edit delete-->
-                                    <a href="index.php?route=ptkpedit&id=<?php echo $row['id_ptkp']; ?>">Ubah</a> | 
-                                    <a href="index.php?route=ptkpdelete&id=<?php echo $row['id_ptkp']; ?>" onclick="javascript: return confirm('Anda yakin ?')">Hapus</a>
+                                    <a href="index.php?route=ptkpedit&id=<?php echo $row['kode_ptkp']; ?>">Ubah</a> | 
+                                    <a href="index.php?route=ptkpdelete&id=<?php echo $row['kode_ptkp']; ?>" onclick="javascript: return confirm('Anda yakin ?')">Hapus</a>
                                 </td>
                             </tr>
                         <?php

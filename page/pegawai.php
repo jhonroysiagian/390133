@@ -8,7 +8,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
     FROM
       pegawai
       LEFT JOIN jabatan ON pegawai.jabatan_pegawai = jabatan.id_jabatan
-      LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.id_ptkp
+      LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.kode_ptkp
     WHERE
       nama_pegawai LIKE '%$keyword%' OR
       nip LIKE '%$keyword%' OR
@@ -18,7 +18,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       npwp_pegawai LIKE '%$keyword%' OR
       jenis_kelamin LIKE '%$keyword%' OR
       agama LIKE '%$keyword%'
-    ORDER BY id_pegawai DESC";
+    ORDER BY nama_pegawai";
     $result = mysql_query($query);
 }else{
     $reload = "index.php?route=pegawai"; // ke halaman dia sendiri
@@ -27,8 +27,8 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
     FROM
       pegawai
       LEFT JOIN jabatan ON pegawai.jabatan_pegawai = jabatan.id_jabatan
-      LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.id_ptkp
-    ORDER BY id_pegawai DESC";
+      LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.kode_ptkp
+    ORDER BY nama_pegawai";
     $result = mysql_query($query);
 }
 
@@ -133,8 +133,8 @@ $no_urut = ($page-1)*$rpp;
                                 <td><?php echo $row['nama_ptkp']; ?></td>
                                 <td>
                                     <!--menambahkan link untuk edit delete-->
-                                    <a href="index.php?route=pegawaiedit&id=<?php echo $row['id_pegawai']; ?>">Ubah</a> | 
-                                    <a href="index.php?route=pegawaidelete&id=<?php echo $row['id_pegawai']; ?>" onclick="javascript: return confirm('Anda yakin ?')">Hapus</a>
+                                    <a href="index.php?route=pegawaiedit&id=<?php echo $row['nip']; ?>">Ubah</a> | 
+                                    <a href="index.php?route=pegawaidelete&id=<?php echo $row['nip']; ?>" onclick="javascript: return confirm('Anda yakin ?')">Hapus</a>
                                 </td>
                             </tr>
                         <?php

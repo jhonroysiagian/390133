@@ -1,7 +1,7 @@
             <?php 
             if (isset($_POST['rekamabsen'])) {
 
-                $id_pegawai = $_POST['id_pegawai'];
+                $nip = $_POST['nip'];
                 $tgl_absen = $_POST['tgl_absen'];
                 $absen = $_POST['absen'];
 
@@ -9,8 +9,8 @@
 
                 for ($i=1; $i<$counter; $i++)
                 {   
-                    $del = mysql_query("DELETE FROM absen WHERE id_pegawai_fk_absen = '$id_pegawai' AND tgl_absen = '$tgl_absen[$i]'");
-                    $query = mysql_query("INSERT INTO absen(id_pegawai_fk_absen,tgl_absen, ket_absen) VALUES ('$id_pegawai','$tgl_absen[$i]','$absen[$i]')");
+                    $del = mysql_query("DELETE FROM absen WHERE nip_fk_absen = '$nip' AND tgl_absen = '$tgl_absen[$i]'");
+                    $query = mysql_query("INSERT INTO absen(nip_fk_absen,tgl_absen, ket_absen) VALUES ('$nip','$tgl_absen[$i]','$absen[$i]')");
                 }
                 echo '<script>alert("Penambahan data berhasil.")</script>';
                 echo '<script>window.location="index.php?route=absen"</script>';
@@ -37,10 +37,10 @@
                             <select id="disabledSelect" class="form-control disabled" name="pegawai">
                                 <?php 
                                 $pegawai_selected = $_POST['pegawai'];
-                                $pegawai = mysql_query("SELECT * FROM pegawai ORDER BY id_pegawai");
+                                $pegawai = mysql_query("SELECT * FROM pegawai ORDER BY nama_pegawai");
                                 while ($datapegawai = mysql_fetch_array($pegawai)) {
                                 ?>
-                                <option disabled="disabled" <?php echo $datapegawai['id_pegawai']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['id_pegawai'] ?>"><?php echo $datapegawai['nama_pegawai'] ?></option>
+                                <option disabled="disabled" <?php echo $datapegawai['nip']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['nip'] ?>"><?php echo $datapegawai['nama_pegawai'] ?></option>
                                 <?php
                                 }
                                 ?>
@@ -99,7 +99,7 @@
                             <input type="hidden" name="counter" value="<?php echo $radio ?>" />
                         </table>
 
-                        <input type="hidden" name="id_pegawai" value="<?php echo $pegawai_selected; ?>">
+                        <input type="hidden" name="nip" value="<?php echo $pegawai_selected; ?>">
                         <input class="btn btn-primary" type="submit" name="rekamabsen" value="Simpan">
                         <a class="btn btn-default" href="index.php?route=absen">Batal</a>
                     </form>

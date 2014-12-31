@@ -14,18 +14,9 @@ if (isset($_POST['submit']))
     $nama_ptkp = mysql_real_escape_string(trim($_POST['nama_ptkp']));
     $nilai_ptkp = mysql_real_escape_string(trim($_POST['nilai_ptkp']));
     
-    $id_ptkp = mysql_real_escape_string(trim($_POST['id_ptkp']));
-    
 //    validasi form
     if ($kode_ptkp=='') {
         $error_kode_ptkp = 'kode ptkp tidak boleh kosong';
-    }else{
-        $cekkode = mysql_query("SELECT * FROM ptkp WHERE kode_ptkp = '$kode_ptkp' AND id_ptkp <> '$id_ptkp'");
-        $jumlah = mysql_num_rows($cekkode);
-        if ($jumlah>0) {
-            $error_kode_ptkp = 'kode ptkp telah ada di database';
-        }
-         
     }
     
     if ($nama_ptkp=='') {
@@ -41,7 +32,7 @@ if (isset($_POST['submit']))
     }
     if ($error_kode_ptkp == '' && $error_nama_ptkp == '' && $error_nilai_ptkp == '') {
     //    input ke database
-        $query = "UPDATE ptkp SET kode_ptkp = '$kode_ptkp', nama_ptkp = '$nama_ptkp', nilai_ptkp = '$nilai_ptkp' WHERE id_ptkp = '$id_ptkp'";
+        $query = "UPDATE ptkp SET kode_ptkp = '$kode_ptkp', nama_ptkp = '$nama_ptkp', nilai_ptkp = '$nilai_ptkp' WHERE kode_ptkp = '$kode_ptkp'";
         $result = mysql_query($query);
 
         if (!$result) 
@@ -53,25 +44,20 @@ if (isset($_POST['submit']))
         {
     //        jika berhasil
     //    tampilkan pesan
-            echo '<script>alert("Penambahan data berhasil.")</script>';
+            echo '<script>alert("Perubahan data berhasil.")</script>';
     //    redirect ke user
             echo '<script>window.location="index.php?route=ptkp"</script>';
         }
     }
 }
 
-if (isset($_GET['id']))
-{
-    $id_ptkp = $_GET['id'];
-}
-else
-{
-    $id_ptkp = NULL;
-}
+
+
+$kode_ptkp = $_GET['id']?$_GET['id']:$_POST['kode_ptkp'];
 
 
 //    ambil dari database
-$query = "SELECT * FROM ptkp WHERE id_ptkp = '$id_ptkp'";
+$query = "SELECT * FROM ptkp WHERE kode_ptkp = '$kode_ptkp'";
 $result = mysql_query($query);
 
 
@@ -90,7 +76,7 @@ $row = mysql_fetch_assoc($result);
                     <form role="form" action="index.php?route=ptkpedit" method="POST">
                         <div class="form-group">
                             <label>Kode PTKP</label> <span class="inputerror"><?php echo $error_kode_ptkp ?></span>
-                            <input class="form-control" type="text" name="kode_ptkp" placeholder="Kode PTKP" value="<?php echo $kode_ptkp?$kode_ptkp:$row['kode_ptkp']; ?>">
+                            <input readonly="readonly" class="form-control" type="text" name="kode_ptkp" placeholder="Kode PTKP" value="<?php echo $kode_ptkp?$kode_ptkp:$row['kode_ptkp']; ?>">
                         </div>
                         <div class="form-group">
                             <label>Keterangan PTKP</label> <span class="inputerror"><?php echo $error_nama_ptkp ?></span>
@@ -100,7 +86,7 @@ $row = mysql_fetch_assoc($result);
                             <label>Nilai PTKP / Tahun</label> <span class="inputerror"><?php echo $error_nilai_ptkp ?></span>
                             <input class="form-control" type="text" name="nilai_ptkp" placeholder="gaji pokok" value="<?php echo $nilai_ptkp?$nilai_ptkp:$row['nilai_ptkp']; ?>">
                         </div>
-                        <input type="hidden" name="id_ptkp" value="<?php echo $id_ptkp?$id_ptkp:$row['id_ptkp']; ?>">
+                        <input type="hidden" name="kode_ptkp" value="<?php echo $kode_ptkp?$kode_ptkp:$row['kode_ptkp']; ?>">
                         <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
                         <a class="btn btn-default" href="index.php?route=ptkp">Batal</a>
                     </form>

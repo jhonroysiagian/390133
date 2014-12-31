@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         {
     //        jika berhasil
     //    tampilkan pesan
-            echo '<script>alert("Perubahan data berhasil.")</script>';
+            echo '<script>alert("Perubahan data berhasil. PERHATIAN ! Setelah melakukan perubahan absen, anda wajib melakukan hitung gaji kembali !")</script>';
     //    redirect ke user
             echo '<script>window.location="index.php?route=absen"</script>';
         }
@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
 $id_absen = $_GET['id']?$_GET['id']:$_POST['id_absen'];
 
-$qabsen = mysql_query("SELECT * FROM absen LEFT JOIN pegawai ON pegawai.id_pegawai = absen.id_pegawai_fk_absen WHERE id_absen = '$id_absen'");
+$qabsen = mysql_query("SELECT * FROM absen LEFT JOIN pegawai ON pegawai.nip = absen.nip_fk_absen WHERE id_absen = '$id_absen'");
 $data = mysql_fetch_array($qabsen);
 ?>
             <div class="row">
@@ -54,6 +54,7 @@ $data = mysql_fetch_array($qabsen);
                                     ?>
                                     <select name="absen">
                                         <option <?php echo $selected_absen == 'masuk'?'selected = "seleceted"':''; ?> value="masuk">Masuk</option>
+                                        <option <?php echo $selected_absen == 'off'?'selected = "seleceted"':''; ?> value="off">Off</option>
                                         <option <?php echo $selected_absen == 'cuti'?'selected = "seleceted"':''; ?> value="cuti">Cuti</option>
                                         <option <?php echo $selected_absen == 'sakit'?'selected = "seleceted"':''; ?> value="sakit">Sakit</option>
                                         <option <?php echo $selected_absen == 'alpa'?'selected = "seleceted"':''; ?> value="alpa">Alpa</option>

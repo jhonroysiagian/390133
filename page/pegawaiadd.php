@@ -36,10 +36,18 @@ if (isset($_POST['submit']))
     if ($nip=='') {
         $error_nip = 'nip tidak boleh kosong';
     }else{
-        $ceknip = mysql_query("SELECT * FROM pegawai WHERE nip = '$nip'");
-        $jumlah = mysql_num_rows($ceknip);
-        if ($jumlah>0) {
-            $error_nip = 'nip telah ada di database';
+        if ( !is_numeric($nip)) {
+            $error_nip = 'nip harus berupa angka';
+        } else {
+            if (strlen($nip) <> 8) {
+                $error_nip = 'nip harus 8 digit';
+            } else {
+                $ceknip = mysql_query("SELECT * FROM pegawai WHERE nip = '$nip'");
+                $jumlah = mysql_num_rows($ceknip);
+                if ($jumlah>0) {
+                    $error_nip = 'nip telah ada di database';
+                }
+            }
         }
     }
     
@@ -64,6 +72,10 @@ if (isset($_POST['submit']))
     }else{
         if ( !is_numeric($tlp_pegawai)) {
             $error_tlp_pegawai = 'nomer telepon harus berupa angka';
+        } else {
+            if (strlen($tlp_pegawai) > 12) {
+                $error_tlp_pegawai = 'nomor telepon maksimal 12 digit';
+            }
         }
     }
     
@@ -84,25 +96,25 @@ if (isset($_POST['submit']))
             $error_tlp_pegawai == '' && 
             $error_agama == ''
             ) {
-    //    input ke database
-        $query = "INSERT INTO pegawai (nama_pegawai,nip,alamat,jabatan_pegawai,tgl_lahir,tlp_pegawai,jenis_kelamin,agama,status_kawin,npwp_pegawai)"
-                . " VALUES ('$nama_pegawai','$nip','$alamat','$jabatan_pegawai','$tgl_lahir_input','$tlp_pegawai','$jenis_kelamin','$agama','$status_kawin','$npwp_pegawai')";
-        $result = mysql_query($query);
+            //    input ke database
+                $query = "INSERT INTO pegawai (nama_pegawai,nip,alamat,jabatan_pegawai,tgl_lahir,tlp_pegawai,jenis_kelamin,agama,status_kawin,npwp_pegawai)"
+                        . " VALUES ('$nama_pegawai','$nip','$alamat','$jabatan_pegawai','$tgl_lahir_input','$tlp_pegawai','$jenis_kelamin','$agama','$status_kawin','$npwp_pegawai')";
+                $result = mysql_query($query);
 
-        if (!$result) 
-        {
-    //  jika query gagal
-            die(mysql_error());
-        } 
-        else 
-        {
-    //        jika berhasil
-    //    tampilkan pesan
-            echo '<script>alert("Penambahan data berhasil.")</script>';
-    //    redirect ke user
-            echo '<script>window.location="index.php?route=pegawai"</script>';
-        }
-    }
+                if (!$result) 
+                {
+            //  jika query gagal
+                    die(mysql_error());
+                } 
+                else 
+                {
+            //        jika berhasil
+            //    tampilkan pesan
+                    echo '<script>alert("Penambahan data berhasil.")</script>';
+            //    redirect ke user
+                    echo '<script>window.location="index.php?route=pegawai"</script>';
+                }
+            }
 }
 
 ?>
@@ -122,7 +134,7 @@ if (isset($_POST['submit']))
                         </div>
                         <div class="form-group">
                             <label>NIP</label> <span class="inputerror"><?php echo $error_nip ?></span>
-                            <input class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip; ?>">
+                            <input class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip ?>">
                         </div>
                        
                         <div class="form-group">
@@ -194,10 +206,10 @@ if (isset($_POST['submit']))
                             <select class="form-control" name="status_kawin">
                                 <?php 
                                 $ptkp_selected = $_POST['status_kawin'];
-                                $ptkp = mysql_query("SELECT * FROM ptkp ORDER BY id_ptkp");
+                                $ptkp = mysql_query("SELECT * FROM ptkp ORDER BY kode_ptkp");
                                 while ($dataptkp = mysql_fetch_array($ptkp)) {
                                 ?>
-                                <option <?php echo $dataptkp['id_ptkp']==$ptkp_selected?'selected="selected"':''; ?> value="<?php echo $dataptkp['id_ptkp'] ?>"><?php echo $dataptkp['nama_ptkp'] ?></option>
+                                <option <?php echo $dataptkp['kode_ptkp']==$ptkp_selected?'selected="selected"':''; ?> value="<?php echo $dataptkp['kode_ptkp'] ?>"><?php echo $dataptkp['nama_ptkp'] ?></option>
                                 <?php
                                 }
                                 ?>
