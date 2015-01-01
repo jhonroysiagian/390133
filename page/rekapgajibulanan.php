@@ -10,7 +10,7 @@ FROM
   LEFT JOIN pegawai ON pegawai.nip = gaji.nip_gaji
 WHERE
   tahun_gaji = '$tahun' AND bulan_gaji = '$bulan' 
-ORDER BY id_gaji DESC";
+ORDER BY nama_pegawai ASC";
 $result = mysql_query($query);
 
 $no_urut = 1;
@@ -32,15 +32,15 @@ $no_urut = 1;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama Pegawai</th>
+                            <th>Nama Karyawan</th>
                             <th>Jabatan</th>
-                            <th>Gaji Pokok</th>
-                            <th>Gaji Kehadiran</th>
-                            <th>Tunjangan</th>
-                            <th>Gaji Kotor</th>
+                            <th>Gaji Pokok (Rp)</th>
+                            <th>Gaji Kehadiran (Rp)</th>
+                            <th>Tunjangan (Rp)</th>
+                            <th>Gaji Kotor (Rp)</th>
                             <th>Persentase PPh</th>
-                            <th>PPh</th>
-                            <th>Gaji Bersih</th>
+                            <th>PPh (Rp)</th>
+                            <th>Gaji Bersih (Rp)</th>
                         </tr>
                         <?php 
                         

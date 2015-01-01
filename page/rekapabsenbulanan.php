@@ -33,7 +33,7 @@ $no_urut = 1;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama Pegawai</th>
+                            <th>Nama Karyawan</th>
                             <th>Jabatan</th>
                             <th>Masuk</th>
                             <th>Off</th>

@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <form target="_blank" role="form" action="page/cetakstruk.php" method="POST">
                         <div class="form-group">
-                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
+                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
                             <select class="form-control" name="pegawai">
                                 <?php 
                                 $pegawai_selected = $_POST['pegawai'];

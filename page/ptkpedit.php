@@ -87,7 +87,7 @@ $row = mysql_fetch_assoc($result);
                             <input class="form-control" type="text" name="nilai_ptkp" placeholder="gaji pokok" value="<?php echo $nilai_ptkp?$nilai_ptkp:$row['nilai_ptkp']; ?>">
                         </div>
                         <input type="hidden" name="kode_ptkp" value="<?php echo $kode_ptkp?$kode_ptkp:$row['kode_ptkp']; ?>">
-                        <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+                        <input class="btn btn-primary" type="submit" name="submit" value="Ubah">
                         <a class="btn btn-default" href="index.php?route=ptkp">Batal</a>
                     </form>
                     </form>

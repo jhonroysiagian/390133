@@ -32,7 +32,7 @@ if (isset($_POST['submit']))
 
 //    validasi form
     if ($nama_pegawai=='') {
-        $error_nama_pegawai = 'nama pegawai tidak boleh kosong';
+        $error_nama_pegawai = 'nama karyawan tidak boleh kosong';
     }
     
     if ($nip=='') {
@@ -136,7 +136,7 @@ $row = mysql_fetch_assoc($result);
 ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ubah Pegawai</h1>
+                    <h1 class="page-header">Ubah Karyawan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -149,7 +149,7 @@ $row = mysql_fetch_assoc($result);
                             <input readonly="readonly" class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip?$nip:$row['nip']; ?>">
                         </div>
                         <div class="form-group">
-                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
+                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
                             <input class="form-control" type="text" name="nama_pegawai" placeholder="nama pegawai" value="<?php echo $nama_pegawai?$nama_pegawai:$row['nama_pegawai']; ?>">
                         </div>
                         <div class="form-group">
@@ -229,7 +229,7 @@ $row = mysql_fetch_assoc($result);
 
                         <!--jangan lupa kirim id-->
                         <input type="hidden" name="nip" value="<?php echo $nip?$nip:$row['nip']; ?>">
-                        <input class="btn btn-primary" type="submit" name="submit" value="Edit">
+                        <input class="btn btn-primary" type="submit" name="submit" value="Ubah">
                         <a class="btn btn-default" href="index.php?route=pegawai">Cancel</a>
                     </form>
                     </form>

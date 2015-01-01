@@ -146,7 +146,7 @@ $row = mysql_fetch_assoc($result);
                                 echo $row['id_jabatan'];
                             }
                             ?>">
-                        <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+                        <input class="btn btn-primary" type="submit" name="submit" value="Ubah">
                         <a class="btn btn-default" href="index.php?route=jabatan">Batal</a>
                     </form>
                     </form>

@@ -39,7 +39,7 @@ $data = mysql_fetch_array($qabsen);
                     <form role="form" action="index.php?route=absenedit" method="POST">
                         <table class="table">
                             <tr>
-                                <td width="200px">Nama Pegawai</td>
+                                <td width="200px">Nama Karyawan</td>
                                 <td><?php echo $data['nama_pegawai'] ?></td>
                             </tr>
                             <tr>

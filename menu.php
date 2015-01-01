@@ -60,7 +60,7 @@
                                 </li>
                                 
                                 <li>
-                                    <a href="index.php?route=pegawai">Data Pegawai</a>
+                                    <a href="index.php?route=pegawai">Data Karyawan</a>
                                 </li>
                                 
                                 <li>

@@ -146,7 +146,7 @@
                 <div class="col-lg-12">
                     <table class="table">
                         <tr>
-                            <th width="220px">Nama Pegawai</th>
+                            <th width="220px">Nama Karyawan</th>
                             <th><?php echo $data['nama_pegawai'] ?></th>
                         </tr>
                         <tr>

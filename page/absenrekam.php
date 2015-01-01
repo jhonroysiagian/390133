@@ -33,7 +33,7 @@
                     <form role="form" action="index.php?route=absenrekam" method="POST">
                         <fieldset disabled>
                         <div class="form-group">
-                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
+                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
                             <select id="disabledSelect" class="form-control disabled" name="pegawai">
                                 <?php 
                                 $pegawai_selected = $_POST['pegawai'];

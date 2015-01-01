@@ -30,7 +30,7 @@ if (isset($_POST['submit']))
     
 //    validasi form
     if ($nama_pegawai=='') {
-        $error_nama_pegawai = 'nama pegawai tidak boleh kosong';
+        $error_nama_pegawai = 'nama karyawan tidak boleh kosong';
     }
     
     if ($nip=='') {
@@ -120,7 +120,7 @@ if (isset($_POST['submit']))
 ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tambah Pegawai</h1>
+                    <h1 class="page-header">Tambah Karyawan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -129,7 +129,7 @@ if (isset($_POST['submit']))
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=pegawaiadd" method="POST">
                         <div class="form-group">
-                            <label>Nama Pegawai</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
+                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
                             <input class="form-control" type="text" name="nama_pegawai" placeholder="nama pegawai" value="<?php echo $nama_pegawai; ?>">
                         </div>
                         <div class="form-group">

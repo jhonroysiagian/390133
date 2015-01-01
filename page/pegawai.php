@@ -14,10 +14,12 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       nip LIKE '%$keyword%' OR
       jabatan LIKE '%$keyword%' OR
       alamat LIKE '%$keyword%' OR
+      jenis_kelamin LIKE '%$keyword%' OR
       tlp_pegawai LIKE '%$keyword%' OR
       npwp_pegawai LIKE '%$keyword%' OR
       jenis_kelamin LIKE '%$keyword%' OR
-      agama LIKE '%$keyword%'
+      agama LIKE '%$keyword%' OR 
+      nama_ptkp LIKE '%$keyword%'
     ORDER BY nama_pegawai";
     $result = mysql_query($query);
 }else{
@@ -49,7 +51,7 @@ $no_urut = ($page-1)*$rpp;
 ?>
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Data Pegawai</h1>
+                    <h1 class="page-header">Data Karyawan</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -90,16 +92,16 @@ $no_urut = ($page-1)*$rpp;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama Pegawai</th>
-                            <th>NIP</th>
-                            <th>Jabatan</th>
-                            <th>Alamat</th>
+                            <th>Nama *</th>
+                            <th>NIP *</th>
+                            <th>Jabatan *</th>
+                            <th>Alamat *</th>
                             <th>Tanggal Lahir</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Nomer Telepon</th>
-                            <th>NPWP</th>
-                            <th>Agama</th>
-                            <th>Status Perkawinan</th>
+                            <th>Jenis Kelamin *</th>
+                            <th>Nomer Telepon *</th>
+                            <th>NPWP *</th>
+                            <th>Agama *</th>
+                            <th>Status *</th>
                             <th>Aksi</th>
                         </tr>
                         <?php 
