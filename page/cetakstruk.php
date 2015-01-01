@@ -45,7 +45,12 @@ $no_urut2 = 1;
 ?>
             <div class="row">
                 <div class="col-lg-6 text-center">
-                    <h1 class="page-header" style="margin-top: 0px">Struk Gaji Bulan <?php echo $bulan.' '.$tahun; ?></h1>
+                    <img src="../img/text.jpg" width="200px"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 text-center">
+                    <h2 style="margin-bottom: 20px; margin-top: 5px">Struk Gaji Bulan <?php echo $bulan.' '.$tahun; ?></h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

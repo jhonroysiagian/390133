@@ -86,9 +86,10 @@ if (isset($_POST['submit'])) {
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">Aplikasi Gaji</h3>
                     </div>
                     <div class="panel-body">
+                        <img src="img/text.jpg" width="325px" style="margin-bottom: 20px" />
                         <form role="form" method="POST" action="login.php">
                             <fieldset>
                                 <div class="form-group">
@@ -98,7 +99,7 @@ if (isset($_POST['submit'])) {
                                     <input class="form-control" placeholder="Password" name="password" type="password">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <input type="submit" name="submit" class="btn btn-primary btn-block" value="Sign In" />
+                                <input type="submit" name="submit" class="btn btn-primary btn-block" value="Masuk" />
                             </fieldset>
                         </form>
                         <div class="text-center text-danger login-error">

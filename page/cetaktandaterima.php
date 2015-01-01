@@ -5,6 +5,7 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/sb-admin-2.css" rel="stylesheet">
         <link href="../css/custom.css" rel="stylesheet">
+        <title>Tanda Terima Gaji</title>
         <style>Cetak Tanda Terima</style>
         <style>
             body{
@@ -13,7 +14,7 @@
             }
         </style>
     </head>
-    <body onload="window.print()">
+    <body onload="window.pcrint()">
 <?php 
 include '../inc/koneksi.php';
 include '../inc/fungsi.php';
@@ -37,8 +38,11 @@ $no_urut2 = 1;
 
 ?>
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header" style="margin-top: 0px">Tanda Terima Gaji Bulan <?php echo $bulan.' '.$tahun; ?></h1>
+                <div class="col-lg-9">
+                    <h1 class="" style="margin-top: 0px">Tanda Terima Gaji Bulan <?php echo $bulan.' '.$tahun; ?></h1>
+                </div>
+                <div class="col-lg-3 text-right">
+                    <img src="../img/text.jpg" width="200px" style="margin-bottom: 20px" />
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

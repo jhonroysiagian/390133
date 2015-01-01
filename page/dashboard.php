@@ -1,7 +1,7 @@
 
             <!-- /.row -->
             <div class="row text-center">
-                
+                <img src="img/dashboard.jpg" width="400px" style="margin-top: 100px" />
                 <h1>Selamat Datang di Aplikasi Gaji Obesphere</h1>
             </div>
             <!-- /.row -->

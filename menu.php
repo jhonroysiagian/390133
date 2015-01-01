@@ -1,5 +1,5 @@
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; height: 51px !important">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -7,7 +7,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Aplikasi Gaji Obesphere</a>
+                <div style="height: 50px; width: 251px; padding: 10px; border-right: 1px solid lightgray; background-color: white">
+                <a style="padding: 0px" class="navbar-brand" href="index.html"><img src="img/text.jpg" width="230px" height="30px" /></a>
+                </div>
             </div>
             <!-- /.navbar-header -->
 
