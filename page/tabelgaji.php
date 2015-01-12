@@ -10,6 +10,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       LEFT JOIN pegawai ON pegawai.nip = gaji.nip_gaji
     WHERE
       nama_pegawai LIKE '%$keyword%' OR
+      nip LIKE '%$keyword%' OR
       bulan_gaji LIKE '%$keyword%' OR 
       jabatan_gaji LIKE '%$keyword%'
     ORDER BY id_gaji DESC";
@@ -79,6 +80,7 @@ $no_urut = ($page-1)*$rpp;
                             <!--bikin header pakai th-->
                             <th>No.</th>
                             <th>Nama Karyawan *</th>
+                            <th>NIP *</th>
                             <th>Periode Gaji *</th>
                             <th>Jabatan *</th>
                             <th>Gaji Pokok (Rp)</th>
@@ -110,6 +112,7 @@ $no_urut = ($page-1)*$rpp;
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo ++$no_urut; ?></td>
                                 <td><?php echo $row['nama_pegawai']; ?></td>
+                                <td><?php echo $row['nip']; ?></td>
                                 <td><?php echo $row['bulan_gaji']." ".$row['tahun_gaji']; ?></td>
                                 <td><?php echo $row['jabatan_gaji']; ?></td>
                                 <td style="text-align: right"><?php echo ribuan($row['gapok_gaji']); ?></td>

@@ -10,6 +10,7 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       LEFT JOIN pegawai ON pegawai.nip = absen.nip_fk_absen
     WHERE
       nama_pegawai LIKE '%$keyword%' OR 
+      nip LIKE '%$keyword%' OR 
       ket_absen LIKE '%$keyword%' 
     ORDER BY id_absen DESC";
     $result = mysql_query($query);
@@ -83,6 +84,7 @@ $no_urut = ($page-1)*$rpp;
                             <!--bikin header pakai th-->
                             <th>No.</th>
                             <th>Nama *</th>
+                            <th>NIP *</th>
                             <th>Tanggal</th>
                             <th>Keterangan *</th>
                             <th>Aksi</th>
@@ -107,6 +109,7 @@ $no_urut = ($page-1)*$rpp;
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo ++$no_urut; ?></td>
                                 <td><?php echo $row['nama_pegawai']; ?></td>
+                                <td><?php echo $row['nip']; ?></td>
                                 <td><?php echo tglview($row['tgl_absen']); ?></td>
                                 <td><?php echo $row['ket_absen']; ?></td>
                                 <td>

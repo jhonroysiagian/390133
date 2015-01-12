@@ -101,7 +101,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'masuk'");
+                                    nip_fk_absen = '$nip' AND MONTH(tgl_absen) = '$bulan' AND YEAR(tgl_absen) = '$tahun' AND ket_absen = 'masuk'");
             $jumlahmasuk = mysql_num_rows($qmasuk);
 //            hitung jumlah cuti kerja
             $qcuti = mysql_query("SELECT
@@ -109,7 +109,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'cuti'");
+                                    nip_fk_absen = '$nip' AND MONTH(tgl_absen) = '$bulan' AND YEAR(tgl_absen) = '$tahun' AND ket_absen = 'cuti'");
             $jumlahcuti = mysql_num_rows($qcuti);
 //            hitung jumlah sakit kerja
             $qsakit = mysql_query("SELECT
@@ -117,7 +117,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'sakit'");
+                                    nip_fk_absen = '$nip' AND MONTH(tgl_absen) = '$bulan' AND YEAR(tgl_absen) = '$tahun' AND ket_absen = 'sakit'");
             $jumlahsakit = mysql_num_rows($qsakit);
 //            hitung jumlah alpa kerja
             $qalpa = mysql_query("SELECT
@@ -125,7 +125,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'alpa'");
+                                    nip_fk_absen = '$nip' AND MONTH(tgl_absen) = '$bulan' AND YEAR(tgl_absen) = '$tahun' AND ket_absen = 'alpa'");
             $jumlahalpa = mysql_num_rows($qalpa);
 //            hitung jumlah off kerja
             $qoff = mysql_query("SELECT
@@ -133,7 +133,7 @@
                                   FROM
                                     absen
                                   WHERE 
-                                    nip_fk_absen = '$nip' AND DATE_FORMAT(tgl_absen,'%m') = '$bulan' AND DATE_FORMAT(tgl_absen,'%Y') = '$tahun' AND ket_absen = 'off'");
+                                    nip_fk_absen = '$nip' AND MONTH(tgl_absen) = '$bulan' AND YEAR(tgl_absen) = '$tahun' AND ket_absen = 'off'");
             $jumlahoff = mysql_num_rows($qoff);
             ?>
             <div class="row">

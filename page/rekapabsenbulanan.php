@@ -34,6 +34,7 @@ $no_urut = 1;
                             <!--bikin header pakai th-->
                             <th>No.</th>
                             <th>Nama Karyawan</th>
+                            <th>NIP</th>
                             <th>Jabatan</th>
                             <th>Masuk</th>
                             <th>Off</th>
@@ -60,6 +61,7 @@ $no_urut = 1;
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo $no_urut++; ?></td>
                                 <td><?php echo $row['nama_pegawai']; ?></td>
+                                <td><?php echo $row['nip']; ?></td>
                                 <td><?php echo $row['jabatan_gaji']; ?></td>
                                 <td><?php echo $row['masuk']; ?></td>
                                 <td><?php echo $row['off']; ?></td>

@@ -17,7 +17,7 @@
             }
         </style>
     </head>
-    <body onload="window.pridnt()">
+    <body onload="window.print()">
 <?php 
 include '../inc/koneksi.php';
 include '../inc/fungsi.php';

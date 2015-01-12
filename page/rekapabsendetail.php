@@ -45,6 +45,10 @@ $no_urut = 1;
                             <td><?php echo $datakaryawan['nama_pegawai'] ?></td>
                         </tr>
                         <tr>
+                            <td width="200px">NIP</td>
+                            <td><?php echo $datakaryawan['nip'] ?></td>
+                        </tr>
+                        <tr>
                             <td>Jabatan</td>
                             <td><?php echo $datakaryawan['jabatan'] ?></td>
                         </tr>
