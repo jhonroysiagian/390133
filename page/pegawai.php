@@ -10,8 +10,8 @@ if(isset($_REQUEST['keyword']) && $_REQUEST['keyword']<>""){
       LEFT JOIN jabatan ON pegawai.jabatan_pegawai = jabatan.id_jabatan
       LEFT JOIN ptkp ON pegawai.status_kawin = ptkp.kode_ptkp
     WHERE
-      nama_pegawai LIKE '%$keyword%' OR
       nip LIKE '%$keyword%' OR
+      nama_pegawai LIKE '%$keyword%' OR
       jabatan LIKE '%$keyword%' OR
       alamat LIKE '%$keyword%' OR
       jenis_kelamin LIKE '%$keyword%' OR
@@ -92,8 +92,8 @@ $no_urut = ($page-1)*$rpp;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama *</th>
                             <th>NIP *</th>
+                            <th>Nama *</th>
                             <th>Jabatan *</th>
                             <th>Alamat *</th>
                             <th>Tanggal Lahir</th>
@@ -123,8 +123,8 @@ $no_urut = ($page-1)*$rpp;
                             <tr>
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo ++$no_urut; ?></td>
-                                <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo $row['nip']; ?></td>
+                                <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo $row['jabatan']; ?></td>
                                 <td><?php echo $row['alamat']; ?></td>
                                 <td><?php echo tglview($row['tgl_lahir']); ?></td>

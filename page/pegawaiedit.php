@@ -1,8 +1,8 @@
 <?php 
 //untuk validasi 
 //kita bikin error variabel
-$error_nama_pegawai = '';
 $error_nip = '';
+$error_nama_pegawai = '';
 $error_jabatan_pegawai = '';
 $error_alamat = '';
 $error_tgl_lahir = '';
@@ -16,8 +16,8 @@ $error_agama = '';
 if (isset($_POST['submit'])) 
 {
 //    menangkap input dari form
-    $nama_pegawai = mysql_real_escape_string(trim($_POST['nama_pegawai']));
     $nip = mysql_real_escape_string(trim($_POST['nip']));
+    $nama_pegawai = mysql_real_escape_string(trim($_POST['nama_pegawai']));
     $jabatan_pegawai = mysql_real_escape_string(trim($_POST['jabatan_pegawai']));
     $alamat = mysql_real_escape_string(trim($_POST['alamat']));
     $tgl_lahir = mysql_real_escape_string(trim($_POST['tgl_lahir']));
@@ -31,11 +31,7 @@ if (isset($_POST['submit']))
     $tgl_lahir_input = sql($tgl_lahir);
 
 //    validasi form
-    if ($nama_pegawai=='') {
-        $error_nama_pegawai = 'nama karyawan tidak boleh kosong';
-    }
-    
-    if ($nip=='') {
+   if ($nip=='') {
         $error_nip = 'nip tidak boleh kosong';
     }else{
         if ( !is_numeric($nip)) {
@@ -46,7 +42,9 @@ if (isset($_POST['submit']))
             } 
         }
     }
-    
+     if ($nama_pegawai=='') {
+        $error_nama_pegawai = 'nama karyawan tidak boleh kosong';
+    }
     if ($alamat=='') {
         $error_alamat = 'alamat tidak boleh kosong';
     }
@@ -83,8 +81,8 @@ if (isset($_POST['submit']))
         $error_agama = 'agama tidak boleh kosong';
     }
     
-    if ($error_nama_pegawai == '' && 
-            $error_nip == '' && 
+    if ($error_nip == '' && 
+            $error_nama_pegawai == '' && 
             $error_jabatan_pegawai == '' && 
             $error_alamat == '' && 
             $error_tgl_lahir == '' && 
@@ -93,8 +91,8 @@ if (isset($_POST['submit']))
             && $error_agama == '') {
     
     //    input ke database
-        $query = "UPDATE pegawai SET nama_pegawai='$nama_pegawai', "
-                . "nip='$nip', "
+        $query = "UPDATE pegawai SET nip='$nip', "
+                . "nama_pegawai='$nama_pegawai', "
                 . "alamat='$alamat', "
                 . "jabatan_pegawai='$jabatan_pegawai', "
                 . "tgl_lahir='$tgl_lahir_input', "

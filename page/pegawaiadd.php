@@ -1,8 +1,8 @@
 <?php 
 //untuk validasi 
 //kita bikin error variabel
-$error_nama_pegawai = '';
 $error_nip = '';
+$error_nama_pegawai = '';
 $error_jabatan_pegawai = '';
 $error_alamat = '';
 $error_tgl_lahir = '';
@@ -15,8 +15,8 @@ $error_agama = '';
 if (isset($_POST['submit'])) 
 {
 //    menangkap input dari form
-    $nama_pegawai = mysql_real_escape_string(trim($_POST['nama_pegawai']));
     $nip = mysql_real_escape_string(trim($_POST['nip']));
+    $nama_pegawai = mysql_real_escape_string(trim($_POST['nama_pegawai']));
     $jabatan_pegawai = mysql_real_escape_string(trim($_POST['jabatan_pegawai']));
     $alamat = mysql_real_escape_string(trim($_POST['alamat']));
     $tgl_lahir = mysql_real_escape_string(trim($_POST['tgl_lahir']));
@@ -29,9 +29,6 @@ if (isset($_POST['submit']))
     $tgl_lahir_input = sql($tgl_lahir);
     
 //    validasi form
-    if ($nama_pegawai=='') {
-        $error_nama_pegawai = 'nama karyawan tidak boleh kosong';
-    }
     
     if ($nip=='') {
         $error_nip = 'nip tidak boleh kosong';
@@ -50,7 +47,9 @@ if (isset($_POST['submit']))
             }
         }
     }
-    
+    if ($nama_pegawai=='') {
+        $error_nama_pegawai = 'nama karyawan tidak boleh kosong';
+    }
     if ($alamat=='') {
         $error_alamat = 'alamat tidak boleh kosong';
     }
@@ -87,8 +86,8 @@ if (isset($_POST['submit']))
         $error_agama = 'agama tidak boleh kosong';
     }
     
-    if ($error_nama_pegawai == '' && 
-            $error_nip == '' && 
+    if ($error_nip == '' && 
+            $error_nama_pegawai == '' && 
             $error_jabatan_pegawai == '' && 
             $error_alamat == '' && 
             $error_tgl_lahir == '' && 
@@ -97,8 +96,8 @@ if (isset($_POST['submit']))
             $error_agama == ''
             ) {
             //    input ke database
-                $query = "INSERT INTO pegawai (nama_pegawai,nip,alamat,jabatan_pegawai,tgl_lahir,tlp_pegawai,jenis_kelamin,agama,status_kawin,npwp_pegawai)"
-                        . " VALUES ('$nama_pegawai','$nip','$alamat','$jabatan_pegawai','$tgl_lahir_input','$tlp_pegawai','$jenis_kelamin','$agama','$status_kawin','$npwp_pegawai')";
+                $query = "INSERT INTO pegawai (nip,nama_pegawai,alamat,jabatan_pegawai,tgl_lahir,tlp_pegawai,jenis_kelamin,agama,status_kawin,npwp_pegawai)"
+                        . " VALUES ('$nip','$nama_pegawai','$alamat','$jabatan_pegawai','$tgl_lahir_input','$tlp_pegawai','$jenis_kelamin','$agama','$status_kawin','$npwp_pegawai')";
                 $result = mysql_query($query);
 
                 if (!$result) 
@@ -129,12 +128,12 @@ if (isset($_POST['submit']))
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=pegawaiadd" method="POST">
                         <div class="form-group">
-                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
-                            <input class="form-control" type="text" name="nama_pegawai" placeholder="nama pegawai" value="<?php echo $nama_pegawai; ?>">
+                            <label>NIP</label> <span class="inputerror"><?php echo $error_nip ?></span>
+                            <input class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip; ?>">
                         </div>
                         <div class="form-group">
-                            <label>NIP</label> <span class="inputerror"><?php echo $error_nip ?></span>
-                            <input class="form-control" type="text" name="nip" placeholder="nip" value="<?php echo $nip ?>">
+                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_nama_pegawai ?></span>
+                            <input class="form-control" type="text" name="nama_pegawai" placeholder="nama pegawai" value="<?php echo $nama_pegawai ?>">
                         </div>
                        
                         <div class="form-group">

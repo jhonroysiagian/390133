@@ -83,8 +83,8 @@ $no_urut = ($page-1)*$rpp;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama *</th>
                             <th>NIP *</th>
+                            <th>Nama*</th>
                             <th>Tanggal</th>
                             <th>Keterangan *</th>
                             <th>Aksi</th>
@@ -108,8 +108,8 @@ $no_urut = ($page-1)*$rpp;
                             <tr>
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo ++$no_urut; ?></td>
-                                <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo $row['nip']; ?></td>
+                                <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo tglview($row['tgl_absen']); ?></td>
                                 <td><?php echo $row['ket_absen']; ?></td>
                                 <td>
