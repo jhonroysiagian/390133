@@ -8,14 +8,14 @@
                 <div class="col-lg-12">
                     <form role="form" action="index.php?route=absenrekam" method="POST">
                         <div class="form-group">
-                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
+                            <label>NIP dan Nama Karyawan</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
                             <select class="form-control" name="pegawai">
                                 <?php 
                                 $pegawai_selected = $_POST['pegawai'];
                                 $pegawai = mysql_query("SELECT * FROM pegawai ORDER BY nama_pegawai");
                                 while ($datapegawai = mysql_fetch_array($pegawai)) {
                                 ?>
-                                <option <?php echo $datapegawai['nip']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['nip'] ?>"><?php echo $datapegawai['nama_pegawai'] ?></option>
+                                <option <?php echo $datapegawai['nip']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['nip'] ?>"><?php echo $datapegawai['nip'].' - '.$datapegawai['nama_pegawai'] ?></option>
                                 <?php
                                 }
                                 ?>

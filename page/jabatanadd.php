@@ -87,8 +87,8 @@ if (isset($_POST['submit']))
                         </div>
                         
                         <div class="form-group">
-                            <label>Gaji Kehadiran</label> <span class="inputerror"><?php echo $error_gaji_kehadiran ?></span>
-                            <input class="form-control" type="text" name="gaji_kehadiran" placeholder="gaji kehadiran" value="<?php echo $gaji_kehadiran; ?>">
+                            <label>Uang Kehadiran</label> <span class="inputerror"><?php echo $error_gaji_kehadiran ?></span>
+                            <input class="form-control" type="text" name="gaji_kehadiran" placeholder="uang kehadiran" value="<?php echo $gaji_kehadiran; ?>">
                         </div>
                         
                         <div class="form-group">

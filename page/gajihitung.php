@@ -146,6 +146,10 @@
                 <div class="col-lg-12">
                     <table class="table">
                         <tr>
+                            <th width="220px">NIP</th>
+                            <th><?php echo $data['nip'] ?></th>
+                        </tr>
+                        <tr>
                             <th width="220px">Nama Karyawan</th>
                             <th><?php echo $data['nama_pegawai'] ?></th>
                         </tr>
@@ -172,9 +176,9 @@
                             <td style="text-align: right"><?php echo ribuan($data['gaji_pokok']) ?></td>
                         </tr>
                         <tr>
-                            <td>Gaji Kehadiran (Rp)</td>
-                            <td><?php echo ribuan($data['gaji_kehadiran']).' x '.$jumlahmasuk.' hari' ?></td>
-                            <td style="text-align: right"><?php $gk = $data['gaji_kehadiran']*$jumlahmasuk; echo ribuan($gk)?></td>
+                            <td>Uang Kehadiran (Rp)</td>
+                            <td><?php echo ribuan($data['gaji_kehadiran']).' x '.($jumlahmasuk+$jumlahoff).' hari' ?></td>
+                            <td style="text-align: right"><?php $gk = $data['gaji_kehadiran']*($jumlahmasuk+$jumlahoff); echo ribuan($gk)?></td>
                         </tr>
                         <tr>
                             <td>Tunjangan (Rp)</td>

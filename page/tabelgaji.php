@@ -79,12 +79,12 @@ $no_urut = ($page-1)*$rpp;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama Karyawan *</th>
                             <th>NIP *</th>
+                            <th>Nama Karyawan *</th>
                             <th>Periode Gaji *</th>
                             <th>Jabatan *</th>
                             <th>Gaji Pokok (Rp)</th>
-                            <th>Gaji Kehadiran (Rp)</th>
+                            <th>Uang Kehadiran (Rp)</th>
                             <th>Tunjangan (Rp)</th>
                             <th>Gaji Kotor (Rp)</th>
                             <th>Persentase PPh</th>
@@ -111,8 +111,8 @@ $no_urut = ($page-1)*$rpp;
                             <tr>
                                 <!--bikin kolom pakai td-->
                                 <td><?php echo ++$no_urut; ?></td>
-                                <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo $row['nip']; ?></td>
+                                <td><?php echo $row['nama_pegawai']; ?></td>
                                 <td><?php echo $row['bulan_gaji']." ".$row['tahun_gaji']; ?></td>
                                 <td><?php echo $row['jabatan_gaji']; ?></td>
                                 <td style="text-align: right"><?php echo ribuan($row['gapok_gaji']); ?></td>

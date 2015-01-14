@@ -128,6 +128,7 @@ case '6': return "Sabtu"; break;
 }
 
 function namahari($tgle){
+//    0000-00-00
 //$bagtgl=substr($tgle,0,2);
 //$bagbln=substr($tgle,3,2);
 //$bagthn=substr($tgle,6,4);

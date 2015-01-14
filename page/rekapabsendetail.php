@@ -41,13 +41,14 @@ $no_urut = 1;
                 <div class="col-lg-12">
                     <table class="table" style="font-weight: bold">
                         <tr>
-                            <td width="200px">Nama Karyawan</td>
-                            <td><?php echo $datakaryawan['nama_pegawai'] ?></td>
-                        </tr>
-                        <tr>
                             <td width="200px">NIP</td>
                             <td><?php echo $datakaryawan['nip'] ?></td>
                         </tr>
+                        <tr>
+                            <td width="200px">Nama Karyawan</td>
+                            <td><?php echo $datakaryawan['nama_pegawai'] ?></td>
+                        </tr>
+                       
                         <tr>
                             <td>Jabatan</td>
                             <td><?php echo $datakaryawan['jabatan'] ?></td>
@@ -71,19 +72,19 @@ $no_urut = 1;
                         <tr 
                                 <?php 
                                 if ($row['ket_absen'] == 'alpa') {
-                                    echo 'style="background-color: pink"';
+                                    echo 'style="background-color: red"';
                                 } elseif ($row['ket_absen'] == 'sakit') {
-                                    echo 'style="background-color: lightgreen"';
+                                    echo 'style="background-color: green"';
                                 } elseif ($row['ket_absen'] == 'cuti') {
-                                    echo 'style="background-color: lightblue"';
+                                    echo 'style="background-color: blue"';
                                 } elseif ($row['ket_absen'] == 'off') {
-                                    echo 'style="background-color: lightgrey"';
+                                    echo 'style="background-color: yellow"';
                                 }
                                 
                                 ?>
                             >
                             <td><?php echo namahari($row['tgl_absen']) ?></td>
-                            <td><?php echo $row['tgl_absen'] ?></td>
+                            <td><?php echo tglindo($row['tgl_absen']) ?></td>
                             <td><?php echo $row['ket_absen'] ?></td>
                         </tr>
                         <?php

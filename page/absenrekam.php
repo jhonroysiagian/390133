@@ -33,14 +33,14 @@
                     <form role="form" action="index.php?route=absenrekam" method="POST">
                         <fieldset disabled>
                         <div class="form-group">
-                            <label>Nama Karyawan</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
+                            <label>NIP dan Nama Karyawan</label> <span class="inputerror"><?php echo $error_pegawai ?></span>
                             <select id="disabledSelect" class="form-control disabled" name="pegawai">
                                 <?php 
                                 $pegawai_selected = $_POST['pegawai'];
                                 $pegawai = mysql_query("SELECT * FROM pegawai ORDER BY nama_pegawai");
                                 while ($datapegawai = mysql_fetch_array($pegawai)) {
                                 ?>
-                                <option disabled="disabled" <?php echo $datapegawai['nip']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['nip'] ?>"><?php echo $datapegawai['nama_pegawai'] ?></option>
+                                <option disabled="disabled" <?php echo $datapegawai['nip']==$pegawai_selected?'selected="selected"':''; ?> value="<?php echo $datapegawai['nip'] ?>"><?php echo $datapegawai['nip'].' - '.$datapegawai['nama_pegawai'] ?></option>
                                 <?php
                                 }
                                 ?>

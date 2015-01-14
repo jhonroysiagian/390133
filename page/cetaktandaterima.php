@@ -55,11 +55,11 @@ $no_urut2 = 1;
                         <tr>
                             <!--bikin header pakai th-->
                             <th>No.</th>
-                            <th>Nama Karyawan</th>
                             <th>NIP</th>
+                            <th>Nama Karyawan</th>
                             <th>Jabatan</th>
                             <th>Gaji Pokok (Rp)</th>
-                            <th>Gaji Kehadiran (Rp)</th>
+                            <th>Uang Kehadiran (Rp)</th>
                             <th>Tunjangan (Rp)</th>
                             <th>Gaji Kotor (Rp)</th>
                             <th>Persentase PPh</th>
@@ -84,8 +84,8 @@ $no_urut2 = 1;
                             <tr>
                                 <!--bikin kolom pakai td-->
                                 <td style="padding: 30px 10px"><?php echo $no_urut++; ?></td>
-                                <td style="padding: 30px 10px"><?php echo $row['nama_pegawai']; ?></td>
                                 <td style="padding: 30px 10px"><?php echo $row['nip']; ?></td>
+                                <td style="padding: 30px 10px"><?php echo $row['nama_pegawai']; ?></td>
                                 <td style="padding: 30px 10px"><?php echo $row['jabatan_gaji']; ?></td>
                                 <td style="text-align: right; padding: 30px 10px"><?php echo ribuan($row['gapok_gaji']); ?></td>
                                 <td style="text-align: right; padding: 30px 10px"><?php echo ribuan($row['gakeh_gaji']); ?></td>

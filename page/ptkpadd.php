@@ -79,7 +79,7 @@ if (isset($_POST['submit']))
                         </div>
                         <div class="form-group">
                             <label>Nilai PTKP / Tahun</label> <span class="inputerror"><?php echo $error_nilai_ptkp ?></span>
-                            <input class="form-control" type="text" name="nilai_ptkp" placeholder="gaji pokok" value="<?php echo $nilai_ptkp; ?>">
+                            <input class="form-control" type="text" name="nilai_ptkp" placeholder="Nilai PTKP" value="<?php echo $nilai_ptkp; ?>">
                         </div>
                         <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
                         <a class="btn btn-default" href="index.php?route=ptkp">Batal</a>

@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div style="height: 50px; width: 251px; padding: 10px; border-right: 1px solid lightgray; background-color: white">
-                <a style="padding: 0px" class="navbar-brand" href="index.html"><img src="img/text.jpg" width="230px" height="30px" /></a>
+                <a style="padding: 0px" class="navbar-brand" href="index.php"><img src="img/text.jpg" width="230px" height="30px" /></a>
                 </div>
             </div>
             <!-- /.navbar-header -->
@@ -42,7 +42,7 @@
                     <ul class="nav" id="side-menu">
                         
                         <li>
-                            <a href="index.php?route=dashboard"><i class="fa fa-dashboard fa-fw"></i> Beranda</a>
+                            <a href="index.php?route=dashboard"><i class="fa fa-dashboard fa-fw"></i> Halaman Utama</a>
                         </li>
                         
                         <?php 

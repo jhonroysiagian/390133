@@ -59,6 +59,10 @@ $no_urut2 = 1;
                 <div class="col-lg-6">
                     <table class="table" style="font-weight:bold">
                         <tr>
+                            <td width="220px">NIP </td>
+                            <td><?php echo $data['nip'] ?></td>
+                        </tr>
+                        <tr>
                             <td width="220px">Nama </td>
                             <td><?php echo $data['nama_pegawai'] ?></td>
                         </tr>
